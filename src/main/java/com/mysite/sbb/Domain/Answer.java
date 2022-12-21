@@ -1,4 +1,4 @@
-package com.mysite.sbb;
+package com.mysite.sbb.Domain;
 
 import jakarta.persistence.*;
 import lombok.Builder;
