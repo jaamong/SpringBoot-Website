@@ -1,6 +1,6 @@
-package com.mysite.sbb.Repository;
+package com.mysite.sbb.Answer;
 
-import com.mysite.sbb.Domain.Answer;
+import com.mysite.sbb.Answer.Answer;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface AnswerRepository extends JpaRepository<Answer, Integer> {
