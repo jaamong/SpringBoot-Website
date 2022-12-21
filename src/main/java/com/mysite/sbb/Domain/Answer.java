@@ -1,13 +1,13 @@
 package com.mysite.sbb.Domain;
 
 import jakarta.persistence.*;
-import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 
 @Getter
-@Builder
+@Setter
 @Entity
 public class Answer {
 
