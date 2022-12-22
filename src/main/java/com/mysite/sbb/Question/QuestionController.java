@@ -16,11 +16,6 @@ public class QuestionController {
 
     private final QuestionService questionService;
 
-/*    @GetMapping("/question/list")
-    public String list() {
-        return "question_list";
-    }*/
-
     @GetMapping("/list")
     public String list(Model model) {
         List<Question> questions = questionService.getList();
@@ -33,6 +28,11 @@ public class QuestionController {
         Question question = questionService.getQuestion(id);
         model.addAttribute("question", question);
         return "question_detail";
+    }
+
+    @GetMapping("/create")
+    public String questionCreate(QuestionForm questionForm) {
+        return "question_form";
     }
 
     /**
