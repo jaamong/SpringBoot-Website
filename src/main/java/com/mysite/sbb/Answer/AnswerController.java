@@ -10,7 +10,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @RequiredArgsConstructor
 @RequestMapping("/answer")
@@ -21,9 +20,10 @@ public class AnswerController {
     private final AnswerService answerService;
 
     @PostMapping("/create/{id}")
-    public String createAnswer(Model model, @PathVariable Integer id,
-                               @Valid AnswerForm answerForm, BindingResult bindingResult) {
+    public String createAnswer(@Valid AnswerForm answerForm, BindingResult bindingResult,
+                               Model model, @PathVariable Integer id) {
         Question question = questionService.getQuestion(id);
+        System.out.println("answerForm = " + answerForm.getContent());
 
         if (bindingResult.hasErrors()) {
             model.addAttribute("question", question);
