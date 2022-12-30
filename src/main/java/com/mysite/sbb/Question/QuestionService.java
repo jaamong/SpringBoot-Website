@@ -34,7 +34,7 @@ public class QuestionService {
     }
 
     public Page<Question> getList(int page) {
-        Pageable pageable = PageRequest.of(page, 100);
+        Pageable pageable = PageRequest.of(page, 10);
         return questionRepository.findAll(pageable);
     }
 }
