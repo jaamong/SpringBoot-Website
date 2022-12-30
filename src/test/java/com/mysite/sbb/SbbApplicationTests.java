@@ -4,6 +4,7 @@ import com.mysite.sbb.Answer.Answer;
 import com.mysite.sbb.Question.Question;
 import com.mysite.sbb.Answer.AnswerRepository;
 import com.mysite.sbb.Question.QuestionRepository;
+import com.mysite.sbb.Question.QuestionService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -24,6 +25,9 @@ class QuestionRepositoryTest {
 
     @Autowired
     private AnswerRepository aRepo;
+
+    @Autowired
+    private QuestionService questionService;
 
     @Test
     void saveQuestion() {
@@ -130,5 +134,14 @@ class QuestionRepositoryTest {
         List<Answer> answers = q.getAnswers();
         assertEquals(1, answers.size());
         assertEquals("질문1", answers.get(0).getContent());
+    }
+
+    @Test
+    void testJpa() {
+        for (int i = 1; i <= 300; i++) {
+            String subject = String.format("테스트 데이터입니다 : [%03d]", i);
+            String content = "내용무";
+            questionService.create(subject, content);
+        }
     }
 }
