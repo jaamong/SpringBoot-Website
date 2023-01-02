@@ -23,7 +23,6 @@ public class AnswerController {
     public String createAnswer(@Valid AnswerForm answerForm, BindingResult bindingResult,
                                Model model, @PathVariable Integer id) {
         Question question = questionService.getQuestion(id);
-        System.out.println("answerForm = " + answerForm.getContent());
 
         if (bindingResult.hasErrors()) {
             model.addAttribute("question", question);
