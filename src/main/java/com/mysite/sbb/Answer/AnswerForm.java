@@ -1,11 +1,13 @@
 package com.mysite.sbb.Answer;
 
 import jakarta.validation.constraints.NotEmpty;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
-@Setter
+//@Setter
+@Builder
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
 public class AnswerForm {
 
     @NotEmpty(message = "내용은 필수항목입니다.")
