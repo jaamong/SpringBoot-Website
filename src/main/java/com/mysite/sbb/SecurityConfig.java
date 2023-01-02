@@ -49,6 +49,9 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
+    /**
+     * 인증 담당 : bean 생성 시 UserSecurityService, PasswordEncoder 자동 설정
+     */
     @Bean
     AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
         return authenticationConfiguration.getAuthenticationManager();
