@@ -8,5 +8,5 @@
 #### Java Version: 17
 #### DB: H2
 #### ORM: Spring Data Jpa
-#### TEST: Junit5
+#### Test Framework: Junit5
 #### Template Engine: Thymeleaf
