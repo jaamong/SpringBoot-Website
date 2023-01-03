@@ -31,16 +31,18 @@ class QuestionRepositoryTest {
 
     @Test
     void saveQuestion() {
-        Question q1 = new Question();
-        q1.setSubject("sbb1");
-        q1.setContent("content1");
-        q1.setCreateAt(LocalDateTime.now());
+        Question q1 = Question.builder()
+                .subject("sbb1")
+                .content("content1")
+                .createAt(LocalDateTime.now())
+                .build();
         qRepo.save(q1);
 
-        Question q2 = new Question();
-        q2.setSubject("sbb2");
-        q2.setContent("content2");
-        q2.setCreateAt(LocalDateTime.now());
+        Question q2 = Question.builder()
+                .subject("sbb2")
+                .content("content2")
+                .createAt(LocalDateTime.now())
+                .build();
         qRepo.save(q2);
     }
 
@@ -87,7 +89,7 @@ class QuestionRepositoryTest {
         assertTrue(optQuestion.isPresent());
 
         Question q = optQuestion.get();
-        q.setSubject("수정된 제목");
+        q.changeSubject("변경된 제목");
         qRepo.save(q);
     }
 
@@ -109,10 +111,11 @@ class QuestionRepositoryTest {
         assertTrue(optQuestion.isPresent());
         Question q = optQuestion.get();
 
-        Answer a = new Answer();
-        a.setContent("질문1");
-        a.setQuestion(q);
-        a.setCreateAt(LocalDateTime.now());
+        Answer a = Answer.builder()
+                .content("질문1")
+                .question(q)
+                .createAt(LocalDateTime.now())
+                .build();
         aRepo.save(a);
     }
 
@@ -141,7 +144,7 @@ class QuestionRepositoryTest {
         for (int i = 1; i <= 300; i++) {
             String subject = String.format("테스트 데이터입니다 : [%03d]", i);
             String content = "내용무";
-            questionService.create(subject, content);
+            questionService.create(subject, content, null);
         }
     }
 }
