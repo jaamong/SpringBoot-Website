@@ -3,14 +3,15 @@ package com.mysite.sbb.Question;
 import com.mysite.sbb.Answer.Answer;
 import com.mysite.sbb.user.SiteUser;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter
-@Setter
+@Builder
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
 @Entity
 public class Question {
 
