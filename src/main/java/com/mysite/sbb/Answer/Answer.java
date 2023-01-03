@@ -27,4 +27,5 @@ public class Answer {
     private SiteUser author;
 
     private LocalDateTime createAt;
+    private LocalDateTime modifyAt;
 }
