@@ -23,7 +23,7 @@
                     </span>
                 </td>
                 <td>
-                    <span th:if="${question.author != null}" th:text="${question.author.username}"></span>
+                    <span th:if="${question.author != null}" th:text="${question?.author.username}"></span>
                 </td>
                 <td th:text="${#temporals.format(question.createAt, 'yyyy-MM-dd HH:mm')}"></td>
             </tr>
