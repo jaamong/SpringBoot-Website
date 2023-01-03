@@ -4,10 +4,10 @@ import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
 
 @Getter
-//@Setter
-@Builder
+@Setter
+/*@Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@AllArgsConstructor
+@AllArgsConstructor*/
 public class AnswerForm {
 
     @NotEmpty(message = "내용은 필수항목입니다.")
