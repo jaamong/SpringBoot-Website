@@ -6,6 +6,7 @@ import com.mysite.sbb.user.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -36,15 +37,13 @@ public class QuestionController {
         return "question_detail";
     }
 
+    @PreAuthorize("isAuthenticated()")
     @GetMapping("/create")
     public String questionCreate(QuestionForm questionForm) {
         return "question_form";
     }
 
-    /**
-     * @Valid : 적용 시 QuestionForm의 @NotEmpty, @Size 등으로 설정한 검증 기능이 동작
-     * BindingResult : @Valid로 인해검증이 수행된 결과를 의미하는 객체
-     */
+    @PreAuthorize("isAuthenticated()")
     @PostMapping("/create")
     public String questionCreate(@Valid QuestionForm questionForm,
                                  BindingResult bindingResult,
