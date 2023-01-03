@@ -1,14 +1,16 @@
 package com.mysite.sbb.Answer;
 
 import com.mysite.sbb.Question.Question;
+import com.mysite.sbb.user.SiteUser;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
 @Getter
-@Setter
+@Builder
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
 @Entity
 public class Answer {
 
@@ -18,8 +20,12 @@ public class Answer {
     @Column(columnDefinition = "TEXT")
     private String content;
 
-    private LocalDateTime createAt;
-
     @ManyToOne
     private Question question; //N:1 (fk)
+
+    @ManyToOne
+    private SiteUser author;
+
+    private LocalDateTime createAt;
+
 }
