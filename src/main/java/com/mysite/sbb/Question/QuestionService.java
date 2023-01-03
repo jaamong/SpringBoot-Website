@@ -29,12 +29,12 @@ public class QuestionService {
     }
 
     public void create(String subject, String content, SiteUser user) {
-        Question question = Question.builder()
-                .subject(subject)
-                .content(content)
-                .author(user)
-                .createAt(LocalDateTime.now())
-                .build();
+        Question question = new Question();
+
+        question.setSubject(subject);
+        question.setContent(content);
+        question.setAuthor(user);
+        question.setCreateAt(LocalDateTime.now());
 
         questionRepository.save(question);
     }
@@ -44,5 +44,12 @@ public class QuestionService {
         sorts.add(Sort.Order.desc("createAt"));
         Pageable pageable = PageRequest.of(page, 10, Sort.by(sorts));
         return questionRepository.findAll(pageable);
+    }
+
+    public void modify(Question question, String subject, String content) {
+        question.setSubject(subject);
+        question.setContent(content);
+        question.setModifyAt(LocalDateTime.now());
+        questionRepository.save(question);
     }
 }
