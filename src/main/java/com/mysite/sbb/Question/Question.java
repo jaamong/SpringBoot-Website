@@ -9,9 +9,10 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter
-@Builder
+@Setter
+/*@Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@AllArgsConstructor
+@AllArgsConstructor*/
 @Entity
 public class Question {
 
@@ -38,7 +39,15 @@ public class Question {
     @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE)
     private List<Answer> answers;
 
-    public void changeSubject(String subject) {
+/*    public void changeSubject(String subject) {
         this.subject = subject;
     }
+
+    public void changeContent(String content) {
+        this.content = content;
+    }
+
+    public void changeModifyAt(LocalDateTime localDateTime) {
+        this.modifyAt = localDateTime;
+    }*/
 }
