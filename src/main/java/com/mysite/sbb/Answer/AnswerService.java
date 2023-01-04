@@ -38,4 +38,8 @@ public class AnswerService {
         answer.setModifyAt(LocalDateTime.now());
         answerRepository.save(answer);
     }
+
+    public void delete(Answer answer) {
+        answerRepository.delete(answer);
+    }
 }
