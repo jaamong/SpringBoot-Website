@@ -10,9 +10,6 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
-/*@Builder
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
-@AllArgsConstructor*/
 @Entity
 public class Answer {
 
@@ -22,10 +19,10 @@ public class Answer {
     @Column(columnDefinition = "TEXT")
     private String content;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Question question; //N:1 (fk)
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private SiteUser author;
 
     private LocalDateTime createAt;

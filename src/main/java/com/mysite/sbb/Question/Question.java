@@ -10,9 +10,6 @@ import java.util.List;
 
 @Getter
 @Setter
-/*@Builder
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
-@AllArgsConstructor*/
 @Entity
 public class Question {
 
@@ -25,7 +22,7 @@ public class Question {
     @Column(columnDefinition = "TEXT")
     private String content;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private SiteUser author;
 
     private LocalDateTime createAt;
@@ -38,16 +35,4 @@ public class Question {
      */
     @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE)
     private List<Answer> answers;
-
-/*    public void changeSubject(String subject) {
-        this.subject = subject;
-    }
-
-    public void changeContent(String content) {
-        this.content = content;
-    }
-
-    public void changeModifyAt(LocalDateTime localDateTime) {
-        this.modifyAt = localDateTime;
-    }*/
 }
