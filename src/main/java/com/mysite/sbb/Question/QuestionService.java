@@ -47,8 +47,7 @@ public class QuestionService {
         sorts.add(Sort.Order.desc("createAt"));
         Pageable pageable = PageRequest.of(page, 10, Sort.by(sorts));
 
-        Specification<Question> spec = search(keyword);
-        return questionRepository.findAll(spec, pageable);
+        return questionRepository.findAllByKeyword(keyword, pageable);
     }
 
     public void modify(Question question, String subject, String content) {
