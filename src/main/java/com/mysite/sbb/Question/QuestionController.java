@@ -59,11 +59,30 @@ public class QuestionController {
     }
 
     @PreAuthorize("isAuthenticated()")
-    @GetMapping("/modify/{id}")
+    @GetMapping("modify/{id}")
+    public String questionModify(QuestionForm questionForm, @PathVariable Integer id, Principal principal) {
+
+        System.out.println("get modify");
+
+        Question question = questionService.getQuestion(id);
+        if(!question.getAuthor().getUsername().equals(principal.getName()))
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "수정 권한이 없습니다.");
+
+        questionForm.setSubject(question.getSubject());
+        questionForm.setContent(question.getContent());
+
+        return "question_form";
+    }
+
+    @PreAuthorize("isAuthenticated()")
+    @PostMapping("/modify/{id}")
     public String questionModify(@Valid QuestionForm questionForm,
                                  BindingResult bindingResult,
                                  @PathVariable Integer id,
                                  Principal principal) {
+
+        System.out.println("post modify");
+
         if(bindingResult.hasErrors())
             return "question_form";
 
@@ -71,9 +90,9 @@ public class QuestionController {
         if(!question.getAuthor().getUsername().equals(principal.getName()))
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "수정 권한이 없습니다.");
 
-        questionService.modify(question, questionForm.getSubject(), question.getContent());
+        questionService.modify(question, questionForm.getSubject(), questionForm.getContent());
 
-        return "question_form";
+        return String.format("redirect:/question/detail/%s", id);
     }
 
     @PreAuthorize("isAuthenticated()")
