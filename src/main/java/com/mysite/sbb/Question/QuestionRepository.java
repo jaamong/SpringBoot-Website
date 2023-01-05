@@ -19,9 +19,10 @@ public interface QuestionRepository extends JpaRepository<Question, Integer> {
 
     @Query("select distinct q from Question q " +
             "left outer join SiteUser u1 on q.author=u1 " +
-            "left outer join Answer a on a.answers=q " +
+            "left outer join Answer a on a.question=q " +
             "left outer join SiteUser u2 on a.author=u2 " +
-            "where q.subject like %:keyword% " +
+            "where " +
+            "q.subject like %:keyword% " +
             "or q.content like %:keyword% " +
             "or u1.username like %:keyword% " +
             "or a.content like %:keyword% " +
