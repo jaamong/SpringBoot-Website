@@ -25,9 +25,15 @@ public class QuestionController {
     private final UserService userService;
 
     @GetMapping("/list")
-    public String list(Model model, @RequestParam(value = "page", defaultValue = "0") int page) {
-        Page<Question> paging = questionService.getList(page);
+    public String list(Model model,
+                       @RequestParam(value = "page", defaultValue = "0") int page,
+                       @RequestParam(value = "keyword", defaultValue = "") String keyword) {
+
+        Page<Question> paging = questionService.getList(page, keyword);
+
         model.addAttribute("paging", paging);
+        model.addAttribute("keyword", keyword);
+
         return "question_list";
     }
 
@@ -65,7 +71,7 @@ public class QuestionController {
         System.out.println("get modify");
 
         Question question = questionService.getQuestion(id);
-        if(!question.getAuthor().getUsername().equals(principal.getName()))
+        if (!question.getAuthor().getUsername().equals(principal.getName()))
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "수정 권한이 없습니다.");
 
         questionForm.setSubject(question.getSubject());
@@ -83,11 +89,11 @@ public class QuestionController {
 
         System.out.println("post modify");
 
-        if(bindingResult.hasErrors())
+        if (bindingResult.hasErrors())
             return "question_form";
 
         Question question = questionService.getQuestion(id);
-        if(!question.getAuthor().getUsername().equals(principal.getName()))
+        if (!question.getAuthor().getUsername().equals(principal.getName()))
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "수정 권한이 없습니다.");
 
         questionService.modify(question, questionForm.getSubject(), questionForm.getContent());
@@ -100,7 +106,7 @@ public class QuestionController {
     public String questionDelete(Principal principal, @PathVariable Integer id) {
         Question question = questionService.getQuestion(id);
 
-        if(!question.getAuthor().getUsername().equals(principal.getName()))
+        if (!question.getAuthor().getUsername().equals(principal.getName()))
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "삭제 권한이 없습니다.");
 
         questionService.delete(question);
