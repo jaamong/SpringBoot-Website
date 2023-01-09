@@ -10,3 +10,9 @@
 #### ORM: Spring Data Jpa
 #### Test Framework: Junit5
 #### Template Engine: Thymeleaf
+
+---
+
+### 진행중인 이슈
+- 추천 버튼 클릭 시 반응 없음
+- 검색 버튼 클릭 시 반응 없음
