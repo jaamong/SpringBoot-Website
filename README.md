@@ -3,13 +3,14 @@
 
 ---
 
-#### Spring Boot Version: 3.0.0
-#### Spring Security
-#### Java Version: 17
-#### DB: H2
-#### ORM: Spring Data Jpa
+#### Editor : IntelliJ Community
+#### Develop Tool : Spring Boot 3.0.0
+#### Build : Gradle
+#### Java : Java 17 (jdk)
+#### DataBase : H2
 #### Test Framework: Junit5
 #### Template Engine: Thymeleaf
+#### Main Library : Spring Data JPA, Spring Security
 
 ---
 
