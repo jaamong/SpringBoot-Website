@@ -1,14 +1,8 @@
-package com.mysite.sbb;
+package com.mysite.sbb.Question;
 
-import com.mysite.sbb.Answer.Answer;
-import com.mysite.sbb.Question.Question;
-import com.mysite.sbb.Answer.AnswerRepository;
-import com.mysite.sbb.Question.QuestionRepository;
-import com.mysite.sbb.Question.QuestionService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -24,25 +18,20 @@ class QuestionRepositoryTest {
     private QuestionRepository qRepo;
 
     @Autowired
-    private AnswerRepository aRepo;
-
-    @Autowired
     private QuestionService questionService;
 
     @Test
     void saveQuestion() {
-        Question q1 = Question.builder()
-                .subject("sbb1")
-                .content("content1")
-                .createAt(LocalDateTime.now())
-                .build();
+        Question q1 = new Question();
+        q1.setSubject("sbb1");
+        q1.setContent("content1");
+        q1.setCreateAt(LocalDateTime.now());
         qRepo.save(q1);
 
-        Question q2 = Question.builder()
-                .subject("sbb2")
-                .content("content2")
-                .createAt(LocalDateTime.now())
-                .build();
+        Question q2 = new Question();
+        q1.setSubject("sbb2");
+        q1.setContent("content2");
+        q1.setCreateAt(LocalDateTime.now());
         qRepo.save(q2);
     }
 
@@ -89,7 +78,7 @@ class QuestionRepositoryTest {
         assertTrue(optQuestion.isPresent());
 
         Question q = optQuestion.get();
-        q.changeSubject("변경된 제목");
+        q.setSubject("변경된 제목");
         qRepo.save(q);
     }
 
@@ -103,40 +92,6 @@ class QuestionRepositoryTest {
         Question q = optQuestion.get();
         qRepo.delete(q);
         assertEquals(2, qRepo.count());
-    }
-
-    @Test
-    void saveAnswer() {
-        Optional<Question> optQuestion = qRepo.findById(8);
-        assertTrue(optQuestion.isPresent());
-        Question q = optQuestion.get();
-
-        Answer a = Answer.builder()
-                .content("질문1")
-                .question(q)
-                .createAt(LocalDateTime.now())
-                .build();
-        aRepo.save(a);
-    }
-
-    @Test
-    void 답변_findById() {
-        Optional<Answer> optAnswer = aRepo.findById(1);
-        assertTrue(optAnswer.isPresent());
-        Answer a = optAnswer.get();
-        assertEquals(8, a.getQuestion().getId());
-    }
-
-    @Test
-    @Transactional
-    void 답변_findById2() {
-        Optional<Question> optQuestion = qRepo.findById(8);
-        assertTrue(optQuestion.isPresent());
-        Question q = optQuestion.get();
-
-        List<Answer> answers = q.getAnswers();
-        assertEquals(1, answers.size());
-        assertEquals("질문1", answers.get(0).getContent());
     }
 
     @Test
