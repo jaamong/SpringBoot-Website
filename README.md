@@ -5,12 +5,12 @@
 
 #### Editor : IntelliJ Community
 #### Develop Tool : Spring Boot 3.0.0
-#### Build : Gradle
+#### Build : Gradle 7.6
 #### Java : Java 17 (jdk)
 #### DataBase : H2
 #### Test Framework: Junit5
 #### Template Engine: Thymeleaf
-#### Main Library : Spring Data JPA, Spring Security
+#### Main Library : Spring Data JPA, Spring Security6:3.1.1
 
 ---
 
